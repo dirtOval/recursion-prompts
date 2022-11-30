@@ -54,19 +54,6 @@ var arraySum = function(array) {
   return result;
 };
 
-//I: an integer
-//O: a boolean
-//C: no modulo
-//E: n/a
-
-//okay so a recursive strategy could involve subtracting twos from the input.
-
-//absolute value of n
-//if n equals 0
-  //return true
-//if n is less than 0
-  //return false
-//else return isEven(n-2)
 
 // 4. Check if a number is even.
 var isEven = function(n) {
@@ -79,10 +66,42 @@ var isEven = function(n) {
   }
 };
 
+//I: an integer
+//O: a larger integer
+//C: n/a
+//E: n/a
+
+//so here we'll declare an accumulator, then
+//base case: n equals zero
+//recursive case: if n is positive, return acc + sumBelow(n-1)
+//                if n is negative, return acc + sumBelow(n+1)
+
+//declare variable sum
+//if n is zero
+  //return sum
+
+//if n is positive
+  //return sum + sumBelow(n-1)
+//if n is negative
+  //return sum + sumBelow(n+1)
+
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+  if (n > 0) {
+    var sum = n - 1;
+  } else {
+    var sum = n + 1;
+  }
+
+  if (n === 0) {
+    return n;
+  } else if (n > 0) {
+    return sum + sumBelow(n - 1);
+  } else if (n < 0) {
+    return sum + sumBelow(n + 1);
+  }
 };
 
 // 6. Get the integers within a range (x, y).
