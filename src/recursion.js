@@ -54,8 +54,29 @@ var arraySum = function(array) {
   return result;
 };
 
+//I: an integer
+//O: a boolean
+//C: no modulo
+//E: n/a
+
+//okay so a recursive strategy could involve subtracting twos from the input.
+
+//absolute value of n
+//if n equals 0
+  //return true
+//if n is less than 0
+  //return false
+//else return isEven(n-2)
+
 // 4. Check if a number is even.
 var isEven = function(n) {
+  if (n === 0) {
+    return true;
+  } else if (n === -1) {
+    return false;
+  } else {
+    return isEven(Math.abs(n) - 2);
+  }
 };
 
 // 5. Sum all integers below a given integer.
