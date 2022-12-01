@@ -225,8 +225,35 @@ var reverse = function(string) {
   return result + reverse(string.slice(0, string.length-1));
 };
 
+//I: a string
+//O: a boolean
+//C: no using native reverse, ignore spaces & capital letters
+//E: string is empty, return true
+
+//okay so my thought is we compare the string at either end, then slice it down
+//in recursive step until it's down to length 1 and if it reaches that then return
+//true. at any point if either end does not match return false.
+
+//declare variable result equal to string.toLowerCase
+
+//if string length is 1
+  //return true
+//if first character does not equal last char
+  //return false
+
+//return palindrome(result.slice(1, string.length-1)
+
+
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+   var result = string.toLowerCase();
+
+   if (result.length === 1 || result.length === 0) {
+    return true;
+   } else if (result[0] !== result[result.length -1]) {
+    return false;
+   }
+   return palindrome(result.slice(1, result.length-1));
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
