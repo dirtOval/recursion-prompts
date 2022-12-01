@@ -248,7 +248,7 @@ var reverse = function(string) {
 var palindrome = function(string) {
    var result = string.toLowerCase();
 
-   if (result.length === 1 || result.length === 0) {
+   if (result.length === 1 || result.length === 0 ) {
     return true;
    } else if (result[0] !== result[result.length -1]) {
     return false;
@@ -323,6 +323,8 @@ var countOccurrence = function(array, value) {
 var rMap = function(array, callback) {
 };
 
+
+
 // 22. Write a function that counts the number of times a key occurs in an object.
 // var obj = {'e':{'x':'y'},'t':{'r':{'e':'r'},'p':{'y':'r'}},'y':'e'};
 // countKeysInObj(obj, 'r') // 1
@@ -330,11 +332,51 @@ var rMap = function(array, callback) {
 var countKeysInObj = function(obj, key) {
 };
 
+
+//I: an object, a value
+//O: an integer
+//C: n/a
+//E: return 0 for an empty object, duh
+
+//so the base case here is obv an empty object. we need an accumulator var
+//to count the number of occurences. the recursive step is probably
+//eliminating the first key in Object.keys. the thing is we need to determine
+//whether the key contains an object, and if it does run countValuesInObj on it
+//too, somehow add the result of that to counter.
+
+//declare variable counter = 0;
+
+//if obj is empty
+ //return counter
+
+ //for each key in obj
+  //if value at key is not an object
+    //if value equals input value
+      //increment counter
+  //if value at key is an object
+    //return counter + countValuesInObj(obj[key], value)
+
 // 23. Write a function that counts the number of times a value occurs in an object.
 // var obj = {'e':{'x':'y'},'t':{'r':{'e':'r'},'p':{'y':'r'}},'y':'e'};
 // countValuesInObj(obj, 'r') // 2
 // countValuesInObj(obj, 'e') // 1
 var countValuesInObj = function(obj, value) {
+  var counter = 0;
+
+  if (Object.keys(obj).length === 0) {
+    return counter;
+  }
+
+  for (var key in obj) {
+    if (typeof obj[key] === 'object') {
+      counter += countValuesInObj(obj[key], value);
+    } else {
+      if(obj[key] === value) {
+        counter++;
+      }
+    }
+  }
+  return counter;
 };
 
 // 24. Find all keys in an object (and nested objects) by a provided name and rename
