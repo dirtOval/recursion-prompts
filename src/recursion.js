@@ -66,28 +66,6 @@ var isEven = function(n) {
   }
 };
 
-//I: an integer
-//O: a larger integer
-//C: n/a
-//E: n/a
-
-//so here we'll declare an accumulator, then
-//base case: n equals zero
-//recursive case: if n is positive, return acc + sumBelow(n-1)
-//                if n is negative, return acc + sumBelow(n+1)
-
-//declare variable sum
-//if n is zero
-  //return sum
-
-//if n is positive
-  //return sum + sumBelow(n-1)
-//if n is negative
-  //return sum + sumBelow(n+1)
-
-// 5. Sum all integers below a given integer.
-// sumBelow(10); // 45
-// sumBelow(7); // 21
 var sumBelow = function(n) {
   if (n > 0) {
     var sum = n - 1;
@@ -104,10 +82,68 @@ var sumBelow = function(n) {
   }
 };
 
+//I: two integers
+//O: an array of integers non-inclusive range
+//C: n/a
+//E: return empty array if no integers in list
+
+//accumulator array and then concat next number in range to accumulator
+//on recursive step y remains constant, x either adds or subtract based on
+//whether x or y is bigger
+
+//declare result array variable
+
+//if x equals y - 1
+  //return result array
+
+//if x is less than y
+  // return concat result array with range(x + 1, y)
+//if x is greater than y
+  // return concat result array with range(x - 1, y)
+
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
+  if (x + 1 === y || x - 1 === y || x === y) {
+    return [];
+  }
+  if (x < y) {
+    var resultArray = [x + 1];
+  } else {
+    var resultArray = [x - 1];
+  }
+
+  if (x === ( y - 2)) {
+    return resultArray;
+  }
+
+  if (x < (y - 1)) {
+    return resultArray.concat(range(x + 1, y));
+  } else if (x > (y + 1)) {
+    return resultArray.concat(range(x - 1, y));
+  }
+
 };
+
+
+//I:two integers
+//O:one integer
+//C:no using Math.pow(), i assume
+//E:if exponent is 0, return 1, if exponent is 1 return base
+
+//okay so here's my idea. accumulator variable is equal to base.
+//base case is exponent equals 0, return 1. recursive case is
+//exponent is greater or less than 0, counts either up or down recursively
+
+//declare variable result = base
+
+//if exponent equals 0
+  //return 1
+
+//if exponent > 0
+  //return base * exponent(base, exp -1)
+//else if exponent < 0
+  //return base * exponent(1/base, exp + 1)
 
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
@@ -115,6 +151,17 @@ var range = function(x, y) {
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
+  var result = base;
+
+  if (exp === 0) {
+    return 1;
+  }
+
+  if (exp > 0) {
+    return base * exponent(base, exp - 1);
+  } else if (exp < 0) {
+    return base * exponent(1/base, exp + 1);
+  }
 };
 
 // 8. Determine if a number is a power of two.
