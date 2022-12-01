@@ -200,8 +200,29 @@ var powerOfTwo = function(n) {
   return powerOfTwo(n / 2);
 };
 
+//I: string
+//O: string reversed
+//C: no using reverse I'm guessing
+//E: if string is empty, return empty string
+
+//so my thought is accumulator string equals last index of input
+//base case: empty string, return empty string
+//recursive case, return acc + empty string with last index sliced out
+
+//declare variable result equal to last character of string
+
+//if input equals empty string
+  //return input
+//return result + reverse(input with last char sliced out
+
 // 9. Write a function that reverses a string.
 var reverse = function(string) {
+  var result = string[string.length-1];
+
+  if (string === '') {
+    return string;
+  }
+  return result + reverse(string.slice(0, string.length-1));
 };
 
 // 10. Write a function that determines if a string is a palindrome.
