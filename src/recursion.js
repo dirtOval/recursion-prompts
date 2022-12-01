@@ -379,9 +379,47 @@ var countValuesInObj = function(obj, value) {
   return counter;
 };
 
+
+//I: an object, the key string to replace, the replacement key string
+//O: the object, mutated
+//C: n/a
+//E: n/a
+
+//this one is tricky. would the base case be an empty object?
+//in any case, we're supposed to mutate the input obj and not make a new one,
+//so we can't just make an accumulator and step through every property
+
+//maybe this is one of those inner function kind of situations
+//let's operate on the assumption that it is.
+
+//make an inner function
+  //if obj equals empty object, return obj
+  //for each key in object
+    //if type of obj[key] is obj
+      //do replaceKeysInObj with obj[key] as obj
+    //if key === oldKey
+      //obj[newKey] equals obj[oldKey]
+      //delete obj[oldKey]
+//return obj
+
+
 // 24. Find all keys in an object (and nested objects) by a provided name and rename
 // them to a provided new name while preserving the value stored at that key.
 var replaceKeysInObj = function(obj, oldKey, newKey) {
+  if (Object.keys(obj).length === 0) {
+    return obj;
+  }
+
+  for (var key in obj) {
+    if (typeof obj[key] === 'object') {
+      replaceKeysInObj(obj[key], oldKey, newKey);
+    }
+    if (key === oldKey) {
+      obj[newKey] = obj[oldKey];
+      delete obj[oldKey];
+    }
+  }
+  return obj;
 };
 
 // 25. Get the first n Fibonacci numbers. In the Fibonacci sequence, each subsequent
