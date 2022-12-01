@@ -168,11 +168,36 @@ var exponent = function(base, exp) {
   }
 };
 
+//I: an integer
+//O: a boolean indicating whether integer is a power of two
+//C: n/a
+//E: input is 1, return true
+
+//okay so a powerof two is jsut 2 * 2 * 2 however many times
+//so the simplest thing i can think to do is to divide the number by two
+//until it turns into 1 or doesn't divide evenly
+
+//declare result equal to n
+//if n equals 1
+  //return true
+//if n is not an integer
+  //return false
+//return powerOfTwo(result/2)
+
+//
+
 // 8. Determine if a number is a power of two.
 // powerOfTwo(1); // true
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+  if (n === 0 || !(Number.isInteger(n))) {
+    return false;
+  }
+  if (n === 1) {
+    return true;
+  }
+  return powerOfTwo(n / 2);
 };
 
 // 9. Write a function that reverses a string.
